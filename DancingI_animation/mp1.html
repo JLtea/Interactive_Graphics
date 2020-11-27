@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>MP1: Dancing Logo</title>
+    </head>
+        <script id="shader-vs" type="x-shader/x-vertex">
+            attribute vec3 aVertexPosition;
+            attribute vec4 aVertexColor;
+            
+            uniform mat4 uWVMatrix;
+            uniform mat4 uMVMatrix;
+            uniform mat4 uPMatrix;
+            varying vec4 vColor;
+
+            void main(void) {
+                gl_Position = uPMatrix*uMVMatrix*uWVMatrix*vec4(aVertexPosition, 1.0);
+                vColor = aVertexColor;
+            }
+        </script>
+  
+        <script id="shader-fs" type="x-shader/x-fragment">
+            precision mediump float;
+            varying vec4 vColor;
+            void main(void) {
+                gl_FragColor = vColor;
+            }
+        </script> 
+    <script src="gl-matrix-min.js"></script> 
+    <script type="text/javascript" src="webgl-utils.js"></script>
+    <body onload="startup();">
+        <canvas id="myGLCanvas" width="500" height="500">
+            Your browser does not support HTML5
+        </canvas>
+        <script type = "text/javascript" src = "mp1.js"></script>
+        <div>
+            <input type="radio" name="type" value="1" checked> Dancing I <br>
+            <input type="radio" name="type" value="2"> My Animation
+        </div>
+    </body>
+</html>
+ 
